@@ -1,0 +1,380 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Process" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:ue="clr-namespace:UiPath.Excel;assembly=UiPath.Excel.Activities" xmlns:ueab="clr-namespace:UiPath.Excel.Activities.Business;assembly=UiPath.Excel.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property sap2010:Annotation.AnnotationText="Transaction item to be processed." Name="in_TransactionItem" Type="InArgument(ui:QueueItem)" />
+    <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>597.6,5278.4</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ProcessTransaction_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="50">
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Windows.Forms</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>UiPath.UIAutomationNext.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Models.CV</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities.Models</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>UiPath.Excel.Model</x:String>
+      <x:String>UiPath.Excel.Activities.Business</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>UiPath.Mail</x:String>
+      <x:String>UiPath.Mail.SMTP.Activities</x:String>
+      <x:String>UiPath.Mail.Activities</x:String>
+      <x:String>UiPath.Activities.Contracts</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="80">
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.Windows.Forms</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.ViewModels</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>Microsoft.Win32.Primitives</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.CodeDom</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>UiPath.Activities.Contracts</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <sap:WorkflowViewStateService.ViewState>
+    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+      <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
+      <x:Boolean x:Key="ShouldCollapseAll">False</x:Boolean>
+    </scg:Dictionary>
+  </sap:WorkflowViewStateService.ViewState>
+  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="608,5213.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:LogMessage DisplayName="Log Message Process Start" sap:VirtualizedContainerService.HintSize="545.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Started Process&quot;]" />
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="545.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_2" Message="[in_TransactionItem.SpecificContent(&quot;Buyer Mobile&quot;)]" />
+    <uix:NApplicationCard AttachMode="ByInstance" CloseMode="Never" DisplayName="Use Browser Chrome: https://botsdna.com/vitrualplots/" sap:VirtualizedContainerService.HintSize="545.6,4760" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="93ae7cfc-8b4f-4f07-9233-46a453a682c1" Version="V2">
+      <uix:NApplicationCard.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="512,4543.2" sap2010:WorkflowViewState.IdRef="Sequence_2">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="x:String" Name="buyer_mobile" />
+              <Variable x:TypeArguments="x:String" Name="seller_mobile" />
+              <Variable x:TypeArguments="x:String" Name="Booking_number" />
+              <Variable x:TypeArguments="x:String" Name="buyername" />
+              <Variable x:TypeArguments="x:String" Name="sellername" />
+            </Sequence.Variables>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:MaximizeWindow Window="{x:Null}" DisplayName="Maximize Window" sap:VirtualizedContainerService.HintSize="449.6,24.8" sap2010:WorkflowViewState.IdRef="MaximizeWindow_1" />
+            <Assign sap:VirtualizedContainerService.HintSize="449.6,82.4" sap2010:WorkflowViewState.IdRef="Assign_1">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[buyer_mobile]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[Right(in_TransactionItem.SpecificContent("Buyer Mobile").tostring.Replace("-",""),10)]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="449.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_3" Message="[&quot;the actaul numbe buyerr is : &quot;+buyer_mobile]" />
+            <Assign sap:VirtualizedContainerService.HintSize="449.6,82.4" sap2010:WorkflowViewState.IdRef="Assign_2">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[seller_mobile]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[Right(in_TransactionItem.SpecificContent("Seller Mobile").tostring.Replace("-",""),10)]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="449.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_4" Message="[&quot; the actual seller number is : &quot; +seller_mobile]" />
+            <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts" sap:VirtualizedContainerService.HintSize="449.6,178.4" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_1" Shortcuts="[d(hk)][d(ctrl)]f[u(ctrl)][u(hk)]" Version="V3" />
+            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'Find'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="449.6,218.4" sap2010:WorkflowViewState.IdRef="NTypeInto_1" InteractionMode="HardwareEvents" ScopeIdentifier="93ae7cfc-8b4f-4f07-9233-46a453a682c1" Text="[buyer_mobile]" Version="V3">
+              <uix:NTypeInto.Target>
+                <uix:TargetAnchorable DesignTimeRectangle="1259, 101, 207, 41" DesignTimeScaleFactor="1.25" ElementType="InputBox" FriendlyName="'Find'" FullSelectorArgument="&lt;ctrl name='Find in page     https://botsdna.com/vitrualplots/' role='dialog' /&gt;&lt;ctrl name='Find' role='editable text' /&gt;" FuzzySelectorArgument="&lt;ctrl name='Find in page     https://botsdna.com/vitrualplots/' role='dialog' /&gt;&lt;ctrl name='Find' role='editable text' automationid='' /&gt;" Guid="8e564ebf-ba7f-4d55-87f4-44868208c4f2" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAANMAAAAtCAYAAAA0n16wAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAACOSURBVHhe7dMxAQAADMOg+TfdmcgJHrgBCZkgIhNEZIKITBCRCSIyQUQmiMgEEZkgIhNEZIKITBCRCSIyQUQmiMgEEZkgIhNEZIKITBCRCSIyQUQmiMgEEZkgIhNEZIKITBCRCSIyQUQmiMgEEZkgIhNEZIKITBCRCSIyQUQmiMgEEZkgIhNEZIKITJDYHiJn0EIINGC4AAAAAElFTkSuQmCC" InformativeScreenshot="1f0623ad8da348e6016ab30f0d6f83b8.png" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='https://botsdna.com/vitrualplots/ - Google Chrome' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V2" Visibility="Interactive" />
+              </uix:NTypeInto.Target>
+            </uix:NTypeInto>
+            <uix:NClick ClickType="Single" DisplayName="Click 'Close find bar'" sap:VirtualizedContainerService.HintSize="449.6,157.6" sap2010:WorkflowViewState.IdRef="NClick_1" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="93ae7cfc-8b4f-4f07-9233-46a453a682c1" Version="V3">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable DesignTimeRectangle="1562, 101, 31, 41" DesignTimeScaleFactor="1.25" ElementType="Button" FriendlyName="'Close find bar'" FullSelectorArgument="&lt;ctrl name='Find in page     https://botsdna.com/vitrualplots/' role='dialog' /&gt;&lt;ctrl name='Close find bar' role='push button' /&gt;" FuzzySelectorArgument="&lt;ctrl name='Find in page     https://botsdna.com/vitrualplots/' role='dialog' /&gt;&lt;ctrl name='Close find bar' role='push button' automationid='' check:fulltext='Close find bar' /&gt;" Guid="ae0182fa-ddd1-4a88-bf56-791c0126f590" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAACMAAAAtCAYAAAAk09IpAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAADnSURBVFhH7dRBCoJAGMXxzlq0KrqCtCs6g3QP29oZ8g62dT3xJGFm9FXfJ0HB+8MsGj/wp00twg8lDEsYljAsYVjCsIRhCcP6b8ytafr1qk9mpjJhuq4Ly9W6X3V9fe6mYX+Ywbwl85s5HE8UFEMwZ82MwdMWxX4EiiG4bn0ryHWAc1BZnmdDkAuDctBcCHJjUFVdEgw+z8mNic9IvPJDbcmFyQ9r296Tr8wLMmPYryY/Qx6QCYMbbra7EWQoBmEuv/4u85vBnxkWuxH2hxlr7gP8jYRhCcMShiUMSxiWMCxhWMJMF8IDYiYUvb2Xu04AAAAASUVORK5CYII=" InformativeScreenshot="2dc3832d37fcb6e43235f3f53c9944a9.png" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='https://botsdna.com/vitrualplots/ - Google Chrome' /&gt;" SearchSteps="Selector, FuzzySelector, Image" Version="V2" Visibility="Interactive" />
+              </uix:NClick.Target>
+            </uix:NClick>
+            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'INPUT'" sap:VirtualizedContainerService.HintSize="449.6,107.2" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT">
+              <ui:Click.CursorPosition>
+                <ui:CursorPosition Position="Center">
+                  <ui:CursorPosition.OffsetX>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:CursorPosition.OffsetX>
+                  <ui:CursorPosition.OffsetY>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:CursorPosition.OffsetY>
+                </ui:CursorPosition>
+              </ui:Click.CursorPosition>
+              <ui:Click.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="1fe17cf1-c263-41a7-a5ff-516970b20969" InformativeScreenshot="1c30a32e3de8badae6ca369bced9883c" Selector="[string.Format(&quot;&lt;html app='chrome.exe' title='https://botsdna.com/vitrualplots/' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl tag='TR' innertext='*{0}' /&gt;&lt;webctrl isleaf='1' tableCol='4' tableRow='*' tag='TD' /&gt;&lt;nav up='1' /&gt;&lt;webctrl tableRow='*' tag='INPUT' type='radio' idx='1' /&gt;&quot;, buyer_mobile)]">
+                  <ui:Target.TimeoutMS>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:Target.TimeoutMS>
+                  <ui:Target.WaitForReady>
+                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                  </ui:Target.WaitForReady>
+                </ui:Target>
+              </ui:Click.Target>
+            </ui:Click>
+            <ui:GetValue ContinueOnError="{x:Null}" DisplayName="Get Text 'TD'" sap:VirtualizedContainerService.HintSize="449.6,107.2" sap2010:WorkflowViewState.IdRef="GetValue_1">
+              <ui:GetValue.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="ca0e4d13-f8b0-45a3-b90f-5967d66e542c" InformativeScreenshot="64c41affe4e53376a8ddf171fbe4b3ea" Selector="[string.Format(&quot;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl tag='TR' innertext='*{0}' /&gt;&lt;webctrl isleaf='1' tableCol='4' tableRow='*' tag='TD' /&gt;&lt;nav up='1' /&gt;&lt;webctrl isleaf='1' tableRow='*' tag='TD' idx='1' /&gt;&quot;, buyer_mobile)]">
+                  <ui:Target.TimeoutMS>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:Target.TimeoutMS>
+                  <ui:Target.WaitForReady>
+                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                  </ui:Target.WaitForReady>
+                </ui:Target>
+              </ui:GetValue.Target>
+              <ui:GetValue.Value>
+                <OutArgument x:TypeArguments="x:String">[buyername]</OutArgument>
+              </ui:GetValue.Value>
+            </ui:GetValue>
+            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="449.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_5" Message="[&quot;the buyer name is : &quot;+buyername]" />
+            <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts" sap:VirtualizedContainerService.HintSize="449.6,178.4" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_2" Shortcuts="[d(hk)][d(ctrl)]f[u(ctrl)][u(hk)]" Version="V3" />
+            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'Find'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="449.6,218.4" sap2010:WorkflowViewState.IdRef="NTypeInto_2" InteractionMode="HardwareEvents" ScopeIdentifier="93ae7cfc-8b4f-4f07-9233-46a453a682c1" Text="[seller_mobile]" Version="V3">
+              <uix:NTypeInto.Target>
+                <uix:TargetAnchorable DesignTimeRectangle="1219, 101, 207, 41" DesignTimeScaleFactor="1.25" ElementType="InputBox" FriendlyName="'Find'" FullSelectorArgument="&lt;ctrl name='Find in page     https://botsdna.com/vitrualplots/' role='dialog' /&gt;&lt;ctrl name='Find' role='editable text' /&gt;" FuzzySelectorArgument="&lt;ctrl name='Find in page     https://botsdna.com/vitrualplots/' role='dialog' /&gt;&lt;ctrl name='Find' role='editable text' automationid='' /&gt;" Guid="5bbf980a-78f5-4e41-b072-c59cc5d4584b" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAANMAAAAtCAYAAAA0n16wAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAChSURBVHhe7dOxDYAwEMBARgkS+6/4NCgDEJd3lRfwNUDCTBAxE0TMBBEzQcRMEDETRMwEETNBxEwQMRNE9kzrfr4C/jATRMwEETNBxEwQMRNEzAQRM0HETBAxE0TMBBEzQcRMEDETRMwEETNBxEwQMRNEzAQRM0FkzwScMRNEzAQRM0HETBAxE0TMBBEzQcRMEDETRMwEETNBxEwQMRMkZl4c6Zxi+LvmFAAAAABJRU5ErkJggg==" InformativeScreenshot="6091b21d9571267bca5d974dd4641de2.png" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='https://botsdna.com/vitrualplots/ - Google Chrome' /&gt;" SearchSteps="Selector, FuzzySelector, Image" Version="V2" Visibility="Interactive" />
+              </uix:NTypeInto.Target>
+            </uix:NTypeInto>
+            <uix:NClick ClickType="Single" DisplayName="Click 'Close find bar'" sap:VirtualizedContainerService.HintSize="449.6,157.6" sap2010:WorkflowViewState.IdRef="NClick_2" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="93ae7cfc-8b4f-4f07-9233-46a453a682c1" Version="V3">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable DesignTimeRectangle="1562, 101, 31, 41" DesignTimeScaleFactor="1.25" ElementType="Button" FriendlyName="'Close find bar'" FullSelectorArgument="&lt;ctrl name='Find in page     https://botsdna.com/vitrualplots/' role='dialog' /&gt;&lt;ctrl name='Close find bar' role='push button' /&gt;" FuzzySelectorArgument="&lt;ctrl name='Find in page     https://botsdna.com/vitrualplots/' role='dialog' /&gt;&lt;ctrl name='Close find bar' role='push button' automationid='' check:fulltext='Close find bar' /&gt;" Guid="ae0182fa-ddd1-4a88-bf56-791c0126f590" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAACMAAAAtCAYAAAAk09IpAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAADnSURBVFhH7dRBCoJAGMXxzlq0KrqCtCs6g3QP29oZ8g62dT3xJGFm9FXfJ0HB+8MsGj/wp00twg8lDEsYljAsYVjCsIRhCcP6b8ytafr1qk9mpjJhuq4Ly9W6X3V9fe6mYX+Ywbwl85s5HE8UFEMwZ82MwdMWxX4EiiG4bn0ryHWAc1BZnmdDkAuDctBcCHJjUFVdEgw+z8mNic9IvPJDbcmFyQ9r296Tr8wLMmPYryY/Qx6QCYMbbra7EWQoBmEuv/4u85vBnxkWuxH2hxlr7gP8jYRhCcMShiUMSxiWMCxhWMJMF8IDYiYUvb2Xu04AAAAASUVORK5CYII=" InformativeScreenshot="2dc3832d37fcb6e43235f3f53c9944a9.png" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='https://botsdna.com/vitrualplots/ - Google Chrome' /&gt;" SearchSteps="Selector, FuzzySelector, Image" Version="V2" Visibility="Interactive" />
+              </uix:NClick.Target>
+            </uix:NClick>
+            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'INPUT'" sap:VirtualizedContainerService.HintSize="449.6,107.2" sap2010:WorkflowViewState.IdRef="Click_2" KeyModifiers="None" MouseButton="BTN_LEFT">
+              <ui:Click.CursorPosition>
+                <ui:CursorPosition Position="Center">
+                  <ui:CursorPosition.OffsetX>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:CursorPosition.OffsetX>
+                  <ui:CursorPosition.OffsetY>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:CursorPosition.OffsetY>
+                </ui:CursorPosition>
+              </ui:Click.CursorPosition>
+              <ui:Click.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="1fe17cf1-c263-41a7-a5ff-516970b20969" InformativeScreenshot="1c30a32e3de8badae6ca369bced9883c" Selector="[string.Format(&quot;&lt;html app='chrome.exe' title='https://botsdna.com/vitrualplots/' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl tag='TR' innertext='*{0}' /&gt;&lt;webctrl isleaf='1' tableCol='4' tableRow='*' tag='TD' /&gt;&lt;nav up='1' /&gt;&lt;webctrl name='seller' tableRow='*' tag='INPUT' type='radio' /&gt;&quot;, seller_mobile)]">
+                  <ui:Target.TimeoutMS>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:Target.TimeoutMS>
+                  <ui:Target.WaitForReady>
+                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                  </ui:Target.WaitForReady>
+                </ui:Target>
+              </ui:Click.Target>
+            </ui:Click>
+            <ui:GetValue ContinueOnError="{x:Null}" DisplayName="Get Text 'TD'" sap:VirtualizedContainerService.HintSize="449.6,107.2" sap2010:WorkflowViewState.IdRef="GetValue_2">
+              <ui:GetValue.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="ca0e4d13-f8b0-45a3-b90f-5967d66e542c" InformativeScreenshot="be58268f6f6003987abfde61bf1e7607" Selector="[string.Format(&quot;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl tag='TR' innertext='*{0}' /&gt;&lt;webctrl isleaf='1' tableCol='4' tableRow='*' tag='TD' /&gt;&lt;nav up='1' /&gt;&lt;webctrl isleaf='1' tableRow='*' tag='TD' idx='1' /&gt;&quot;, seller_mobile)]">
+                  <ui:Target.TimeoutMS>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:Target.TimeoutMS>
+                  <ui:Target.WaitForReady>
+                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                  </ui:Target.WaitForReady>
+                </ui:Target>
+              </ui:GetValue.Target>
+              <ui:GetValue.Value>
+                <OutArgument x:TypeArguments="x:String">[sellername]</OutArgument>
+              </ui:GetValue.Value>
+            </ui:GetValue>
+            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="449.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_6" Message="[&quot;the seller name is : &quot;+sellername]" />
+            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'Plot No'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="449.6,218.4" sap2010:WorkflowViewState.IdRef="NTypeInto_3" ScopeIdentifier="93ae7cfc-8b4f-4f07-9233-46a453a682c1" Text="[in_TransactionItem.SpecificContent(&quot;Plot No&quot;).ToString]" Version="V3">
+              <uix:NTypeInto.Target>
+                <uix:TargetAnchorable BrowserURL="https://botsdna.com/vitrualplots/" DesignTimeRectangle="739, 792, 212, 27" DesignTimeScaleFactor="1.25" ElementType="InputBox" FriendlyName="'INPUT'" FullSelectorArgument="&lt;webctrl idx='2' tag='TABLE' /&gt;&lt;webctrl tableRow='1' tag='INPUT' /&gt;" FuzzyMatches="10000" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl type='text' tag='INPUT' class='' aaname='' /&gt;" Guid="7385b09b-6171-4a53-ad83-f7a47f885c8a" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAANgAAAAfCAYAAACFzQPhAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAACHSURBVHhe7dMhDoAwAARBXt3vl2BIIShg3Uxy6vRuE8gIDEKXwMYYZvZxqzOw+wG8s7YkMPiZwCAkMAgJDEICg5DAICQwCAkMQgKDkMAgJDAICQxCAoOQwCAkMAgJDEICg5DAICQwCAkMQgKDkMAgJDAICQxCj4EdjsPMvm11CQz4l8AgM+cOyLlKulteWiQAAAAASUVORK5CYII=" InformativeScreenshot="4dc2ca8d067c6143da568dc4fa2751a7.png" IsResponsive="True" ScopeSelectorArgument="&lt;html app='chrome.exe' title='https://botsdna.com/vitrualplots/' /&gt;" SearchSteps="FuzzySelector, Image" Version="V2" Visibility="Interactive">
+                  <uix:TargetAnchorable.Anchors>
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                      <uix:Target DesignTimeRectangle="395, 782, 333, 48" ElementType="Text" FriendlyName="'Plot No'" FullSelectorArgument="&lt;webctrl idx='2' tag='TABLE' /&gt;&lt;webctrl tableRow='1' tag='TD' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl type='' tag='TD' class='' aaname=' Plot No :' check:innerText='Plot No :' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAVEAAAA0CAYAAAAzOAsfAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAQ0SURBVHhe7dyxaxpRHMDx+zNuFbpka7beWLcKHRpwERxK6BAcQ4YiXYpkKJLJ0SlghoAZAmYomCVgh4IdCmYosUMHhwwOHW7o8Ot75zu9O+9M9NlUku8HflDPO8/pm+d51hEAwMqmEb25uWEYhmGWnFhEAQD3EzaTiALACogoAFggogBggYgCgAUiCgAWiCgAWCCiAGCBiAKABSIKABaIKABYIKIAYIGIAoAFIgoAFogoAFiwjmjvoyOOkzHPPMm/rUn7+9jsbXypBc/XvpjHSxvL4KQhnV/m4QLh+/OO+mZLil8t2dHv92PPbACA+1lbRAt7dal/ik91ryBbrn4+J7tnI3OEYhnR0cmOOn5HWktE1HE8qX8zG5OIKIAVrS2imUH8aQL1vC7TteB/iaiaV00Zmu0xRBTAiv59RMWX7oHeZ3u2EnzwiOalVPaCc+4cp2SUiAJY0QNENGWfjIiOvzZlv+hJTgfNcWXrdUUal5HLADKSVnHyWrOpyaL0Tc6tgnvdk+pz8++f5slQZkR9GV7UZffllrjBuXLipV3jBfBkPUBEh9J8pfepSCdsT0pEhyelIFS54r40z7rSvWhJrZhT+7lSOOqrnGm+jL52pf0hr7bnpXqq9rscyKKkTSOqVq3+VVW21TncclvlOCI1or46Vq9eXcm/q0vrQp3rrKGC6qptnlTOUy8MxIWvW2zFzwfg0finEfVvB0HwdBzdg64JoZKM6I+mFPQ+5VbimuVYOgeTaEW/FFr+43y4r760oF/PVRGMpDclov5lNXjfnto2fd/an4E09B8FV/1RuDXbshBR4NFbW0QXTa7YkP5vc4CWiGj/aFs9zkvzx+RxjApsXu3rHs5uUVo9osptRyr6joFoBOciquK9p4/bl26soBP+5/3g/ZdOSSPw1K0tomm3ODVOOtK7TvmwHYvoSNpl/RrVjGubPanpwEVWc1YRVcbnlfjqeC6ifanp0L5JroyNlJUrgKdpbRFN+zifKRHRyZdFWV8QrT+ik3Drj/XbUr1SGZ2L4vw5Y4goAGMjIvrQK9FAeP/qCxXva1aiAFazARENr4lG7iONWvc10YjhsX4dR7xyKTjHLIrhNdHIHQURXBMFENqIiN797Xw8sNOIJu/3TLEoorPbr8xEVpZ3fjvv7Er7rm/nATx6mxFRZdF9ovnDeMjClaD3vrXUfaKpvtXFU6+VjKg6izo26z7RnOyecp8ogA2KqDa+akhl+oulnHjF5C+WQkO1Qi2Y/UrSXlCoOyOqYtk/nPwkdP4apy+Ds9rsF0vuVvr/SpWFiAKPnnVEAeApI6IAYIGIAoAFIgoAFogoAFggogBggYgCgAUiCgAWiCgAWCCiAGCBiAKABSIKABaIKABYIKIAYIGIAoAFIgoAFogoAFhIjSjDMAyz3BBRhmEYiyGiDMMwK8+N/AV2P3lGsKpiMwAAAABJRU5ErkJggg==" SearchSteps="FuzzySelector, Image" />
+                    </scg:List>
+                  </uix:TargetAnchorable.Anchors>
+                </uix:TargetAnchorable>
+              </uix:NTypeInto.Target>
+            </uix:NTypeInto>
+            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'Sqft'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="449.6,218.4" sap2010:WorkflowViewState.IdRef="NTypeInto_4" ScopeIdentifier="93ae7cfc-8b4f-4f07-9233-46a453a682c1" Text="[in_TransactionItem.SpecificContent(&quot;Sqft&quot;).ToString]" Version="V3">
+              <uix:NTypeInto.Target>
+                <uix:TargetAnchorable BrowserURL="https://botsdna.com/vitrualplots/" DesignTimeRectangle="739, 840, 212, 27" DesignTimeScaleFactor="1.25" ElementType="InputBox" FriendlyName="'INPUT'" FullSelectorArgument="&lt;webctrl idx='2' tag='TABLE' /&gt;&lt;webctrl tableRow='2' tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl type='text' tag='INPUT' class='' aaname='' /&gt;" Guid="0deaee6e-ef96-4f5f-a940-89bb30688bfd" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAANgAAAAfCAYAAACFzQPhAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAACSSURBVHhe7dOxDYQwAARBqna3rgVEwMtIn5nNZqSLLt5jznmaWTOBmYV7BTbGMLPNrU39ArsPYN8amcDgYwKDkMAgJDAICQxCAoOQwCAkMAgJDEICg5DAICQwCAkMQgKDkMAgJDAICQxCAoOQwCAkMAgJDEICg5DAIPQ3sCcyM9vb2tQrMDP7dgIzCycws2zzvADGpXR6V41yAQAAAABJRU5ErkJggg==" InformativeScreenshot="ea790dfe1604110bf57c4c78f17c8a2f.png" IsResponsive="True" ScopeSelectorArgument="&lt;html app='chrome.exe' title='https://botsdna.com/vitrualplots/' /&gt;" SearchSteps="FuzzySelector, Image" Version="V2" Visibility="Interactive">
+                  <uix:TargetAnchorable.Anchors>
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                      <uix:Target DesignTimeRectangle="395, 829, 333, 48" ElementType="Text" FriendlyName="'Sqft'" FullSelectorArgument="&lt;webctrl idx='2' tag='TABLE' /&gt;&lt;webctrl tableRow='2' tag='TD' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl type='' tag='TD' class='' aaname=' Sqft :' check:innerText='Sqft :' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAVEAAAA0CAYAAAAzOAsfAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAP2SURBVHhe7dwxa9toHMdxvQmNJkvokE2jIFBD4QweAoVgDopuOJIhOEvCDScyxD04zE02FJxJhQN5KHgIaMoNh1MIeChoONBwkNfyqyRLqe0obeLHaW34/uEDjaQ83b5IfuRYKub29rb4F8MwDPOtKZtJRBmGYZaYyogCAJ6GiAKAASIKAAaIKAAYIKIAYICIAoABIgoABogoABggogBggIgCgAEiCgAGiCgAGCCiAGCAiAKAASIKAAaIKAAYMI7oZNiR13RUsyxZKfuFq8abjsJJ9fVPEkfq7Jdr22pdTNLjsa76HQU3FdcDwHdmENGJgl+cIpx1ece+/N99td/UtW1n0XPUHsYVv/dYcbq+na/j/RUoHIa6+pRGu99IjzXUI6IA1sDSEU2GbdlpQJ2TkZLF859CtZ00pLanIA3f3LlHi+TvpGv81NN45jgRBbBOlo7o6CS723w4ZvFFKz1vqdHPHsGrr/m6kU6zx/hmT5OZ40QUwDoxjKirzj/V52+ve2pYNTnn0cK5WKNzT/UX2aO6pdpLT93LWOM8jqcapddMQ5mtP6P5h942F44V18+vDwDfj/HjvLXVkH8Rafxf9XXzxuq9zuJpy/21q2AYqHfSUM1ytPfavYtichMpHHbUytbfbWswDBVeftTHy1CD4+w6V+136bHhleJ7/8eMmyzk6RoLd7MAsCoGG0uJRr+505AWao6r1mFXg2is5P/7v1OGt/7neO54/P6gWGf2znIFj/NEFMAzM4joVPxvoM7djvwM29VB/2pm0ylReJid8xTE82tkd6jdl9m5FUcUAJ6ZcUS/SBRfRwr6vrxX28Wdpa29d+XGUrHbvtud220vTT9jJaIANssKIzov/nAqJ4vgjq8oP1YdxdI0jkQUwGZZLqLXPe1tWdo5W9x5n1U+vpfBSx/Zd9OfH7gTjc52iCiAjbNcRJNQ7ewz0Lu7zCqxBvtZRNtFGNOoHmU78y0N7r2AX15LRAFslqUf56Oz6Vc+naNAk4qd+Mn7dv44vzP7jabIz48tfsspGRWP/k+J6PWXYwDwoxh8JjpO7x5reUgte1vu/kH+3Xn/2FPDmR63X6V3qnPvj5avRdlyf+7k738OzltybVt2vrv/7Ygmfx/kaztHPd4TBfDDGW8sTUY9ne67crayCGZqcpqe/IuHAzcZ+moVoa05Lfkf4kfvzmfxDg7rxV922tPga38tiogCeGbGEV2V+xEFgPVHRAHAABEFAANEFAAMrE1EAWATEVEAMEBEAcAAEQUAA0QUAAwQUQAwQEQBwAARBQADRBQADBBRADBARAHAABEFAANEFAAMzEWUYRiGedyUzSSiDMMwS8y0mdJnyqYCeGs6VHcAAAAASUVORK5CYII=" SearchSteps="FuzzySelector, Image" />
+                    </scg:List>
+                  </uix:TargetAnchorable.Anchors>
+                </uix:TargetAnchorable>
+              </uix:NTypeInto.Target>
+            </uix:NTypeInto>
+            <uix:NClick ClickType="Single" DisplayName="Click 'Submit'" sap:VirtualizedContainerService.HintSize="449.6,157.6" sap2010:WorkflowViewState.IdRef="NClick_3" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="93ae7cfc-8b4f-4f07-9233-46a453a682c1" Version="V3">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable BrowserURL="https://botsdna.com/vitrualplots/" DesignTimeRectangle="739, 419, 71, 27" DesignTimeScaleFactor="1.25" ElementType="Button" FriendlyName="'Submit'" FullSelectorArgument="&lt;webctrl idx='2' tag='TABLE' /&gt;&lt;webctrl tableRow='3' tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl type='button' tag='INPUT' class='' aaname='Submit' check:text='Submit' /&gt;" Guid="e27d29aa-0d55-4cf4-98e5-74b173610ac9" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAEsAAAAfCAYAAACvUTALAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAGxSURBVGhD7ZlLjoMwDEC5IFJPw6LiGqzoSag4RhecgCVH8OCQBDskISnMaBCO9FQ1OGC/fFqJAqQlN5GV0ayscRyhaRqoqkqYQRfohDYrCy/2fQ/TNAkz6AKd0GZloU3foDuDTmgTWRFEVgYiKwORlcFJsgZoHwUUBad++2LjDK9yHltD57l2mHc937uE9mP6MG/6Pc4JsjqoUc6z4/0qMU//Dr8qy2UjL85hWbHivin8BrLSHugXwVemiWnVZ2BLf1ooVZ8ea1D3cI6ERwuDGUfkLM8hcQk74LAskzg+sHwN/hhNuiy8H4nTW9oKs88kk2S2PY1zjwh3Jf31ylKQRFe2Wyld1raA7jnHmFWiZfHJccRo2Lh/IYsQW97psraiWWF2G9KYC8paWc8OU1SyLHrOGK4va0kweFY52+X2K0sl4ysOcYryitAxXNa2AFb0VWXZJHdWjMJZaexnnskiBZI+K+csWd77hDlB1sKywjjeJFTCNEYLY7Lc/1nO7J8li04WmZwQp8m6AyIrA5GVgcjKQGRlILIyCMqS94ac6HtDeSPNQRfBN9LS9pvISm4APx/a3uHNls2hAAAAAElFTkSuQmCC" InformativeScreenshot="550f98f782e6a306e151681b8aba34a4.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='https://botsdna.com/vitrualplots/' /&gt;" SearchSteps="FuzzySelector, Image" Version="V2" Visibility="Interactive" />
+              </uix:NClick.Target>
+            </uix:NClick>
+            <uix:NGetText DisplayName="Get Text '25973100'" sap:VirtualizedContainerService.HintSize="449.6,157.6" sap2010:WorkflowViewState.IdRef="NGetText_1" ScopeIdentifier="93ae7cfc-8b4f-4f07-9233-46a453a682c1" TextString="[Booking_number]" Version="V3">
+              <uix:NGetText.Target>
+                <uix:TargetAnchorable BrowserURL="https://botsdna.com/vitrualplots/Thanks.html" DesignTimeRectangle="19, 748, 1900, 47" DesignTimeScaleFactor="1.25" ElementType="Text" FriendlyName="'25973100'" FullSelectorArgument="&lt;webctrl id='TransNo' tag='P' /&gt;" FuzzySelectorArgument="&lt;webctrl id='TransNo' tag='P' type='' class='' /&gt;" Guid="efea118b-3811-4f4b-89f6-2e2f56911fa3" InformativeScreenshot="24e204f01f6933e17c81adefe9580104.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='https://botsdna.com/vitrualplots/Thanks.html' /&gt;" SearchSteps="FuzzySelector" Version="V2" Visibility="Interactive" />
+              </uix:NGetText.Target>
+            </uix:NGetText>
+            <uix:NNavigateBrowser DisplayName="Navigate Browser - Go Back" sap:VirtualizedContainerService.HintSize="449.6,82.4" sap2010:WorkflowViewState.IdRef="NNavigateBrowser_1" Version="V3" />
+            <ueab:ExcelProcessScopeX DisplayAlerts="{x:Null}" ExistingProcessAction="{x:Null}" FileConflictResolution="{x:Null}" LaunchMethod="{x:Null}" LaunchTimeout="{x:Null}" MacroSettings="{x:Null}" ProcessMode="{x:Null}" ShowExcelWindow="{x:Null}" DisplayName="Private: Excel Process Scope" sap:VirtualizedContainerService.HintSize="449.6,52.8" sap2010:WorkflowViewState.IdRef="ExcelProcessScopeX_1">
+              <ueab:ExcelProcessScopeX.Body>
+                <ActivityAction x:TypeArguments="ui:IExcelProcess">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="ui:IExcelProcess" Name="ExcelProcessScopeTag" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="592,653.6" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ueab:ExcelApplicationCard Password="{x:Null}" ReadFormatting="{x:Null}" CreateNewFile="False" DisplayName="Use Excel File" sap:VirtualizedContainerService.HintSize="529.6,541.6" sap2010:WorkflowViewState.IdRef="ExcelApplicationCard_1" ResizeWindow="None" TemplatePath="Untitled.xlsx" WorkbookPath="[in_Config(&quot;File&quot;).ToString]">
+                      <ueab:ExcelApplicationCard.Body>
+                        <ActivityAction x:TypeArguments="ue:IWorkbookQuickHandle">
+                          <ActivityAction.Argument>
+                            <DelegateInArgument x:TypeArguments="ue:IWorkbookQuickHandle" Name="Excel" />
+                          </ActivityAction.Argument>
+                          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="496,272" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <ueab:WriteCellX AutoIncrementRow="True" Cell="[Excel.Sheet(&quot;Sheet1&quot;).Cell(&quot;G2&quot;)]" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="433.6,160" sap2010:WorkflowViewState.IdRef="WriteCellX_1" Value="[Booking_number]" />
+                          </Sequence>
+                        </ActivityAction>
+                      </ueab:ExcelApplicationCard.Body>
+                    </ueab:ExcelApplicationCard>
+                  </Sequence>
+                </ActivityAction>
+              </ueab:ExcelProcessScopeX.Body>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ueab:ExcelProcessScopeX>
+            <Sequence DisplayName="Sending the email to the seller and the buyer" sap:VirtualizedContainerService.HintSize="449.6,522.4" sap2010:WorkflowViewState.IdRef="Sequence_5">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="x:String" Name="pssd" />
+              </Sequence.Variables>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:GetPassword DisplayName="Get Password" sap:VirtualizedContainerService.HintSize="387.2,24.8" sap2010:WorkflowViewState.IdRef="GetPassword_1" ProtectedPassword="AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAVTAvHeazkUSxIWKTKV2IewAAAAACAAAAAAAQZgAAAAEAACAAAADFkO0wKH/GBNdUMco1lm9/gx5SMyjzuDbjz7QhnF8kCQAAAAAOgAAAAAIAACAAAACGU3PEf76Q9apYfMvDF2Phb2kVbpU1q7fBApRlaPXz/yAAAAC/stjtBOqiMO9COSd8iRlehgoN0kzhNeisuG7rAM9NTkAAAACIGonNb8LOBT592//RDZMFHe0RKWDGr8VgM3jETkjfSofiQmmnPTUXC0fHupdeRo6c8q4Jzg44+ucHKt6j8d3v" Result="[pssd]" />
+              <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" ReplyTo="{x:Null}" SecurePassword="{x:Null}" TimeoutMS="{x:Null}" UseOAuth="{x:Null}" Body="[&quot;Dear seller &quot;+sellername.ToString+&quot; &amp; the buyer &quot;+buyername.ToString+Environment.NewLine+&quot;New plot (Plot number is :&quot;+in_TransactionItem.SpecificContent(&quot;Plot No&quot;).ToString+&quot; with no of sqft&quot;+in_TransactionItem.SpecificContent(&quot;Sqft&quot;).ToString+&quot; has been booked succesffuly on the &quot;+DateAndTime.Now.ToLongTimeString.ToString+Environment.NewLine+&quot;here you can find the booking details&quot;+Environment.NewLine+Environment.NewLine+Environment.NewLine+&#xA;&quot;&lt;table&gt;&#xA;  &lt;tr&gt;&#xA;    &lt;th&gt;Booking number&lt;/th&gt;&#xA;    &lt;th&gt;Buyername&lt;/th&gt;&#xA;&#x9;&lt;th&gt;Seller name&lt;/th&gt;&#xA;&#x9;&lt;th&gt;Buyerphonenumber&lt;/th&gt;&#xA;&#x9;&lt;th&gt;sellerphonenumber&lt;/th&gt;&#xA;  &lt;/tr&gt;&#xA;  &lt;tr&gt;&#xA;    &lt;td&gt;&quot;+Booking_number.ToString+&quot;&lt;/td&gt;&#xA;    &lt;td&gt;&quot;+buyername.ToString+&quot;&lt;/td&gt;&#xA;    &lt;td&gt;&quot;+sellername.ToString+&quot;&lt;/td&gt;&#xA; &lt;td&gt;&quot;+buyer_mobile.ToString+&quot;&lt;/td&gt;&#xA;    &lt;td&gt;&quot;+seller_mobile.ToString+&quot;&lt;/td&gt;&#xA;  &lt;/tr&gt;&#xA;&lt;/table&gt;&#xA;&quot;+Environment.NewLine+&quot;Thanks&quot;]" DisplayName="Send SMTP Mail Message" Email="kattanikhil111@gmail.com" EnableSSL="True" sap:VirtualizedContainerService.HintSize="387.2,151.2" sap2010:WorkflowViewState.IdRef="SendMail_2" IgnoreCRL="False" IsBodyHtml="True" Password="[pssd]" Port="465" SecureConnection="Auto" Server="smtp.gmail.com" Subject="[&quot;The plot is successfulyy booked : &quot; + Booking_number.ToString]" To="boonnikhilkatta@gmail.com">
+                <ui:SendMail.Files>
+                  <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+                </ui:SendMail.Files>
+              </ui:SendMail>
+              <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" ReplyTo="{x:Null}" SecurePassword="{x:Null}" TimeoutMS="{x:Null}" UseOAuth="{x:Null}" Body="[&quot;Dear seller &quot;+sellername.ToString+&quot; &amp; the buyer &quot;+buyername.ToString+Environment.NewLine+&quot;New plot (Plot number is :&quot;+in_TransactionItem.SpecificContent(&quot;Plot No&quot;).ToString+&quot; with no of sqft&quot;+in_TransactionItem.SpecificContent(&quot;Sqft&quot;).ToString+&quot; has been booked succesffuly on the &quot;+DateAndTime.Now.ToLongTimeString.ToString+Environment.NewLine+&quot;here you can find the booking details&quot;+Environment.NewLine+Environment.NewLine+Environment.NewLine+&#xA;&quot;&lt;table&gt;&#xA;  &lt;tr&gt;&#xA;    &lt;th&gt;Booking number&lt;/th&gt;&#xA;    &lt;th&gt;Buyername&lt;/th&gt;&#xA;&#x9;&lt;th&gt;Seller name&lt;/th&gt;&#xA;&#x9;&lt;th&gt;Buyerphonenumber&lt;/th&gt;&#xA;&#x9;&lt;th&gt;sellerphonenumber&lt;/th&gt;&#xA;  &lt;/tr&gt;&#xA;  &lt;tr&gt;&#xA;    &lt;td&gt;&quot;+Booking_number.ToString+&quot;&lt;/td&gt;&#xA;    &lt;td&gt;&quot;+buyername.ToString+&quot;&lt;/td&gt;&#xA;    &lt;td&gt;&quot;+sellername.ToString+&quot;&lt;/td&gt;&#xA; &lt;td&gt;&quot;+buyer_mobile.ToString+&quot;&lt;/td&gt;&#xA;    &lt;td&gt;&quot;+seller_mobile.ToString+&quot;&lt;/td&gt;&#xA;  &lt;/tr&gt;&#xA;&lt;/table&gt;&#xA;&quot;+Environment.NewLine+&quot;Thanks&quot;]" DisplayName="Send SMTP Mail Message" Email="kattanikhil111@gmail.com" EnableSSL="True" sap:VirtualizedContainerService.HintSize="387.2,151.2" sap2010:WorkflowViewState.IdRef="SendMail_3" IgnoreCRL="False" IsBodyHtml="True" Password="[pssd]" Port="465" SecureConnection="Auto" Server="smtp.gmail.com" Subject="[&quot;The plot is successfulyy booked : &quot; + Booking_number.ToString]" To="boonnikhilkatta@gmail.com">
+                <ui:SendMail.Files>
+                  <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+                </ui:SendMail.Files>
+              </ui:SendMail>
+            </Sequence>
+          </Sequence>
+        </ActivityAction>
+      </uix:NApplicationCard.Body>
+      <uix:NApplicationCard.TargetApp>
+        <uix:TargetApp Area="0, 0, 0, 0" BrowserType="Chrome" IconBase64="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" InformativeScreenshot="cf82149acfb868d2ae0e28486adb7cb5.jpg" Selector="&lt;html app='chrome.exe' title='https://botsdna.com/vitrualplots/' /&gt;" Url="[in_Config(&quot;Booking_land_url&quot;).ToString]" />
+      </uix:NApplicationCard.TargetApp>
+    </uix:NApplicationCard>
+  </Sequence>
+</Activity>
